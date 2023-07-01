@@ -11,6 +11,7 @@ https://vladmihalcea.com/a-beginners-guide-to-jpa-hibernate-entity-state-transit
 
 
 ## Example of Hibernate's operations
+As mentioned above, on this project, we will focus on four operations as shown in the picture below with descriptions.
 
 |Operations                     |Description                  |
 |-------------------------------|-----------------------------|
