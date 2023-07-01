@@ -4,7 +4,9 @@ The objective of this project was to learn the basic entity lifecycle in Hiberna
 
 ## JPA’s entity lifecycle states
 Before we dive deep into the way to use the operations provided by Hibernate and some code demonstrations, I would like to suggest understanding JPA’s entity lifecycle states from the picture and source below.![enter image description here](https://thorben-janssen.com/wp-content/uploads/2020/07/Lifecycle-Model-1024x576.png)
+
 https://thorben-janssen.com/entity-lifecycle-model/
+
 https://vladmihalcea.com/a-beginners-guide-to-jpa-hibernate-entity-state-transitions/
 
 
