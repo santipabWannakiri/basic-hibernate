@@ -43,5 +43,11 @@ public class BasicHibernateApplication {
         instructorService.save(instructorA);
         instructorService.save(instructorB);
         instructorService.save(instructorC);
+
+        instructorService.persistEntityLifecycleTesting();
+//        instructorService.refreshEntityLifecycleTesting();
+//        instructorService.detachEntityLifecycleTesting();
+//        instructorService.mergeEntityLifecycleTesting();
+//        instructorService.removeEntityLifecycleTesting();
     }
 }

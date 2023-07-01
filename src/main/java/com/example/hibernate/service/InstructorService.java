@@ -10,4 +10,10 @@ public interface InstructorService {
     public Instructor findById(int id);
     public List<Instructor> findAll();
     public void deleteById(int id);
+
+    public void detachEntityLifecycleTesting();
+    public void mergeEntityLifecycleTesting();
+    public void persistEntityLifecycleTesting();
+    public void removeEntityLifecycleTesting();
+    public void refreshEntityLifecycleTesting();
 }

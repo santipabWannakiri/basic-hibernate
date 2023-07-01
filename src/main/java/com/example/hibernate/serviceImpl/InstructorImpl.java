@@ -1,6 +1,7 @@
 package com.example.hibernate.serviceImpl;
 
 import com.example.hibernate.model.Instructor;
+import com.example.hibernate.model.InstructorDetail;
 import com.example.hibernate.service.InstructorService;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
@@ -41,5 +42,50 @@ public class InstructorImpl implements InstructorService {
     public void deleteById(int id) {
         Instructor objectToDelete = entityManager.find(Instructor.class, id);
         entityManager.remove(objectToDelete);
+    }
+
+    @Override
+    @Transactional
+    public void detachEntityLifecycleTesting() {
+    Instructor detachInstructorTesting = entityManager.find(Instructor.class,1);
+    entityManager.detach(detachInstructorTesting);
+    detachInstructorTesting.setFirst_name("Detach-state");
+    }
+
+    @Override
+    @Transactional
+    public void mergeEntityLifecycleTesting() {
+        Instructor mergeInstructorTesting = entityManager.find(Instructor.class,1);
+        entityManager.detach(mergeInstructorTesting);
+        mergeInstructorTesting.setFirst_name("Merge=detach-->persist");
+        entityManager.merge(mergeInstructorTesting);
+    }
+
+    @Override
+    @Transactional
+    public void persistEntityLifecycleTesting() {
+        InstructorDetail persistInstructorDetailTesting = new InstructorDetail("https://youtube.com/transient.n", "Cycling");
+        Instructor persisInstructorTesting = new Instructor("Transient-new-state", "New", "transient.n@gmail.com", persistInstructorDetailTesting);
+        entityManager.persist(persisInstructorTesting);
+        persisInstructorTesting.setFirst_name("Managed-persist-state");
+    }
+
+    @Override
+    @Transactional
+    public void removeEntityLifecycleTesting() {
+        Instructor removeInstructorTesting = entityManager.find(Instructor.class,1);
+        entityManager.remove(removeInstructorTesting);
+
+    }
+
+    @Override
+    @Transactional
+    public void refreshEntityLifecycleTesting() {
+        Instructor refreshInstructorTesting = entityManager.find(Instructor.class,1);
+        refreshInstructorTesting.setFirst_name("New instructor");
+        System.out.println(refreshInstructorTesting.getFirst_name());
+        entityManager.refresh(refreshInstructorTesting);
+        System.out.println(refreshInstructorTesting.getFirst_name());
+
     }
 }
