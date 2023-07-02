@@ -32,7 +32,7 @@ To better understand how to use them, please take a look at the illustrator belo
 On the other hand, "persist" means that they're going to track any change on Instructor and InstructorDetail objects.
 So when will they save the object into a database ? The answer is when there is a call to "**commit/flush**".
 
-> **3:** After we called persist right now, we are in the "**Persist state**". On this step, we have edited instructor first_name again. So It's going to track that the first name has changed and wait until you call "**commit/flush**" to record the object in the database.
+> **3:** After we called persist. Right now we are in the "**Persist state**". On this step, we have edited instructor first_name again. So It's going to track that the first name has changed and wait until you call "**commit/flush**" to record the object in the database.
 
 > **Note:** You may wonder why we didn't see any commit or flush operations in the illustrator. How is it possible to save objects into a database? The answer is "**@Transaction annotation represents commit and flush operations,**" and it's going to conduct after already doing all commands in our method.
 
