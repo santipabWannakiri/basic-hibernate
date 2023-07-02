@@ -21,7 +21,7 @@ As mentioned above, on this project, we will focus on four operations as shown i
 |`entityManager.detach`			    |Detaches an entity from the persistence context, making it detached.|
 |`entityManager.remove`			    |Deletes an entity from the database.|
 
-## Persist
+## Persist Operation
 The persist operation in Hibernate is typically used for creating new records in the database. 
 To better understand how to use them, please take a look at the illustrator below.
 ![enter image description here](images/PersisDemo.JPG)
@@ -33,3 +33,10 @@ On the other hand, "persist" means that they're going to track any change on Ins
 So when will they save the object into a database ? The answer is when there is a call to "**commit/flush**".
 
 > **Number3:** After we called persist right now, we are in the "**Persist state**". On this step, we have edited instructor first_name again. So It's going to track that the first name has changed and wait until you call "**commit/flush**" to record the object in the database.
+
+> **Note:** You may wonder why we didn't see any commit or flush operations in the illustrator. How is it possible to save objects into a database? The answer is "**@Transaction annotation represents commit and flush operations,**" and it's going to conduct after already doing all commands in our method.
+
+> **Therefore,** as a result of everything done in this method, we query a record. It's going to show the first_name = "**Managed-persist-state**".
+
+
+## Merge Operation
