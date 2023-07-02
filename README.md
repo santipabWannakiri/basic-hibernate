@@ -20,3 +20,16 @@ As mentioned above, on this project, we will focus on four operations as shown i
 |`entityManager.refresh`        |Refreshes the state of an entity from the database.|
 |`entityManager.detach`			    |Detaches an entity from the persistence context, making it detached.|
 |`entityManager.remove`			    |Deletes an entity from the database.|
+
+## Persist
+The persist operation in Hibernate is typically used for creating new records in the database. 
+To better understand how to use them, please take a look at the illustrator below.
+![enter image description here](images/PersisDemo.JPG)
+
+> **Number1:** We call this step "**Transient/New**" This is just a normal step where we create a new object and instantiate the values Instructor and InstructorDetail. On this step, there is no relationship with the database at all.
+
+> **Number2:** On this step, we call it "**Managed/Persist**". To call entityManager. persist doesn't mean saving objects into a database.
+On the other hand, "persist" means that they're going to track any change on Instructor and InstructorDetail objects.
+So when will they save the object into a database ? The answer is when there is a call to "**commit/flush**".
+
+> **Number3:** After we called persist right now, we are in the "**Persist state**". On this step, we have edited instructor first_name again. So It's going to track that the first name has changed and wait until you call "**commit/flush**" to record the object in the database.
