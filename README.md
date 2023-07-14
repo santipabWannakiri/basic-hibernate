@@ -24,7 +24,7 @@ As mentioned above, on this project, we will focus on four operations as shown i
 ## Persist Operation
 The persist operation in Hibernate is typically used for creating new records in the database. 
 To better understand how to use them, please take a look at the illustrator below.
-![enter image description here](images/PersisDemo.JPG)
+![enter image description here](images/PersisOperation.JPG)
 
 > **1:** We call this step "**Transient/New**" This is just a normal step where we create a new object and instantiate the values Instructor and InstructorDetail. On this step, there is no relationship with the database at all.
 
@@ -40,3 +40,14 @@ So when will they save the object into a database ? The answer is when there is 
 
 
 ## Merge Operation
+The merge operation in Hibernate is typically used for update the records in the database. 
+To better understand how to use them, please take a look at the illustrator below.
+![enter image description here](images/MergeOperation.JPG)
+
+> **1:** We retrieve the instructor entity from the database with the condition PimaryKey = 1. And if you get back to taking a look at lifecycle states, you will find the state should be "**Managed/Persist**".
+
+> **2:** On this step, we change the message of attribute First_name to "Merge=detached-->persist". So they're going to track the change in this attribute.
+
+> **3:** We call "**entityManager.merge**", the entity will still be in the "**Managed/Persist**" state within the persistence context. The changes made to the entity will be tracked by the context, and when a transaction is "**commit/flush**" (@Transaction),the changes will be synchronized and persisted to the database.
+
+## refresh Operation
