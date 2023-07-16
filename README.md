@@ -73,3 +73,21 @@ To better understand how to use them, please take a look at the illustrator belo
 > **5:** We getFirst_name() again for checking the message inside the attribute, and the output prints out "**SOMSAK**".
 
 ## Detach Operation
+The Detach operation in Hibernate refers to detaching an entity object from the current persistence context. When an object is detached, it is no longer associated with a particular Hibernate session or persistence context. 
+To better understand how to use them, please take a look at the illustrator below.
+![enter image description here](images/MergeOperation.JPG)
+
+> **1:** We retrieve the instructor entity from the database with the condition PimaryKey = 1.
+
+> **2:** We called "entityManager.detach", which means we changed the state from "Persist" to "Detach" and removed an entity from the persistence context, making it detached and no longer managed by the EntityManager. Detached entities are not automatically synchronized with the database.
+
+> **3:** We tried to change the message inside attribute FIRST_NAME from "**SOMSAK**" to "**Detach-state**". And when a programarly conducts until done to "**commit/flush**" for commiting our change into the database, However, since we changed the state of the object to **Detach**," any change after the "**Detach**" state isn't recorded to the database. That means if we query and print out FIRST_NAME, the result will still be "**SOMSAK**".
+
+## Remove Operation
+The Remove operation in Hibernate, It's quite easy to understand. We're going to use them when we want to remove an object from the database.
+To better understand how to use them, please take a look at the illustrator below.
+![enter image description here](images/MergeOperation.JPG)
+
+> **1:** Assume that the users would like to delete the first instructor. So we receive the key from the user and then find the instructor in the database with the condition PimaryKey = 1. If found, the PrimaryKey = 1 in the database will return an object to our object "**objectToDelete**"
+
+> **2:** We called "entityManager.remove", with the object that we wanted to delete. This is quite straightforward. However, don't forget that a program will automatically do a sync with the database when "**commit/flush**" (@Transaction) occurs, and then the object is actually deleted.
