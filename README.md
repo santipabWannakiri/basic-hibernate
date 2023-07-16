@@ -3,7 +3,7 @@ The objective of this project was to learn the basic entity lifecycle in Hiberna
 
 
 ## JPA’s entity lifecycle states
-Before we dive deep into the way to use the operations provided by Hibernate and some code demonstrations, I would like to suggest understanding JPA’s entity lifecycle states from the picture and source below.![enter image description here](https://thorben-janssen.com/wp-content/uploads/2020/07/Lifecycle-Model-1024x576.png)
+Before we deep dive into the way to use the operations provided by Hibernate and some code demonstrations, I would like to suggest understanding JPA’s entity lifecycle states from the picture and source below.![enter image description here](https://thorben-janssen.com/wp-content/uploads/2020/07/Lifecycle-Model-1024x576.png)
 
 https://thorben-janssen.com/entity-lifecycle-model/
 
@@ -28,7 +28,7 @@ To better understand how to use them, please take a look at the illustrator belo
 
 > **1:** We call this step "**Transient/New**" This is just a normal step where we create a new object and instantiate the values Instructor and InstructorDetail. On this step, there is no relationship with the database at all.
 
-> **2:** On this step, we call it "**Managed/Persist**". To call entityManager. persist doesn't mean saving objects into a database.
+> **2:** On this step, we called it "**Managed/Persist**". To call entityManager. persist doesn't mean saving objects into a database.
 On the other hand, "persist" means that they're going to track any change on Instructor and InstructorDetail objects.
 So when will they save the object into a database ? The answer is when there is a call to "**commit/flush**".
 
@@ -46,8 +46,30 @@ To better understand how to use them, please take a look at the illustrator belo
 
 > **1:** We retrieve the instructor entity from the database with the condition PimaryKey = 1. And if you get back to taking a look at lifecycle states, you will find the state should be "**Managed/Persist**".
 
-> **2:** On this step, we change the message of attribute First_name to "Merge=detached-->persist". So they're going to track the change in this attribute.
+> **2:** On this step, we changed the message of attribute First_name to "Merge=detached-->persist". So they're going to track the change in this attribute.
 
-> **3:** We call "**entityManager.merge**", the entity will still be in the "**Managed/Persist**" state within the persistence context. The changes made to the entity will be tracked by the context, and when a transaction is "**commit/flush**" (@Transaction),the changes will be synchronized and persisted to the database.
+> **3:** We called "**entityManager.merge**", the entity will still be in the "**Managed/Persist**" state within the persistence context. The changes made to the entity will be tracked by the context, and when a transaction is "**commit/flush**" (@Transaction),the changes will be synchronized and persisted to the database.
 
-## refresh Operation
+## Refresh Operation
+The Refresh operation in Hibernate is typically used for refreshing the state of an object from the database. 
+To better understand how to use them, please take a look at the illustrator below.
+![enter image description here](images/MergeOperation.JPG)
+
+> **1:** We retrieve the instructor entity from the database with the condition PimaryKey = 1. And the detial of the instructor objected to the following:
+
+|Attribute           |Value           |
+|----------------|--------------------|
+|ID               |1|
+|EMAIL            |SOMSAK.Sgmail.com	|
+|`FIRST_NAME`     |`SOMSAK`|
+|LAST_NAME		    |SANDEE|
+
+> **2:** We changed the message inside attribute FIRST_NAME from "**SOMSAK**" to "**NATHAN**" So they're going to track the change in this attribute. However, It does not commit or do anything with the database.
+
+> **3:** We getFirst_name() for viewing the message inside the atrribute,  and the output prints out "**NATHAN**".
+
+> **4:** We called "**entityManager.refresh**", the entity's going to sync/reload object from the database.
+
+> **5:** We getFirst_name() again for checking the message inside the attribute, and the output prints out "**SOMSAK**".
+
+## Detach Operation
