@@ -1,5 +1,5 @@
 # basic-hibernate
-The objective of this project was to learn the basic entity lifecycle in Hibernate. In fact, Hibernate's EntityManager interface provides various methods for performing CRUD (Create, Read, Update, Delete). However, in this example, we will pick up persist, merge, refresh, detach, and remove to demonstrate.
+The objective of this project is to learn the basic entity lifecycle in Hibernate. In fact, Hibernate's EntityManager interface provides various methods for performing CRUD (Create, Read, Update, Delete). However, in this example, we will pick up persist, merge, refresh, detach, and remove to demonstrate.
 
 
 ## JPA’s entity lifecycle states
